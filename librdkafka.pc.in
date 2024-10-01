@@ -1,0 +1,14 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+pkgincludedir=@includedir@/librdkafka-@VMAJ@
+
+Name: libdwarf
+Description: rdkafka debug symbols library
+Version: @PROJECT_VERSION@
+Requires.private: @requirements_librdkafka_pc@
+Libs: -L${libdir} -lrdkafka
+Libs.private: @requirements_librdkafka_libs@
+Cflags: -I${pkgincludedir}
+Cflags.private: -DLIBRDKAFKA_STATIC
