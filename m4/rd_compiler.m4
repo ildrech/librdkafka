@@ -1,9 +1,9 @@
-###Copyright (C) 2024 Ildar Rechapov <ildar.rch@gmail.com>
-###This code is public domain and can be freely used or copied.
+dnl Copyright (C) 2024 Ildar Rechapov <ildar.rch@gmail.com>
+dnl This code is public domain and can be freely used or copied.
 
-###
-### Let's check for a C compiler flag availability
-###
+dnl
+dnl Let's check for a C compiler flag availability
+dnl
 
 AC_DEFUN(
     [
@@ -34,22 +34,24 @@ AC_DEFUN(
     ]
 )
 
-###
-### Let's check if FLAGS are available and add them to RDKAFKA_CFLAGS
-###
+dnl
+dnl Let's check if FLAGS are available and add them to RDKAFKA_CFLAGS
+dnl
 
 AC_DEFUN(
     [RDKAFKA_CHECK_C_COMPILER_FLAGS],
     [
         _RDKAFKA_CHECK_C_COMPILER_FLAG([$1])
-    AS_IF(
-        [test "${have_flag}" != "yes"],
-        [
-            m4_foreach_w(
-                [flag],
-                [$1],
-                [_RDKAFKA_CHECK_C_COMPILER_FLAG(m4_defn([flag]))]
-            )
-        ]
-    )
-])
+
+        AS_IF(
+            [test "${have_flag}" != "yes"],
+            [
+                m4_foreach_w(
+                    [flag],
+                    [$1],
+                    [_RDKAFKA_CHECK_C_COMPILER_FLAG(m4_defn([flag]))]
+                )
+            ]
+        )
+    ]
+)
