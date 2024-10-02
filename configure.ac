@@ -35,6 +35,7 @@ AC_INIT([librdkafka], [version], [librdkafka on confluent])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])
+m4_include([m4/rd_compiler.m4])
 ### The following for librdkafka.pc.in
 AC_SUBST([PROJECT_VERSION],[version])
 
