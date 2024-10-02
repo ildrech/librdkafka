@@ -1,6 +1,8 @@
 ###Copyright (C) 2024 Ildar Rechapov <ildar.rch@gmail.com>
 ###This code is public domain and can be freely used or copied.
 
+ACLOCAL_AMFLAGS = -I m4
+
 AUTOMAKE_OPTIONS=subdir-objects
 SUBDIRS = src
 
@@ -8,7 +10,7 @@ SUBDIRS = src
 README: README.md
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libdwarf.pc
+pkgconfig_DATA = librdkafka.pc
 
 DISTCLEANFILES =
 
@@ -33,5 +35,5 @@ EXTRA_DIST = \
     autogen.sh \
     CMakeLists.txt \
     README.md \
-    libdwarf.pc.in
+    librdkafka.pc.in
 

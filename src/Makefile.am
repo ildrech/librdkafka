@@ -6,9 +6,9 @@ MAINTAINERCLEANFILES = Makefile.in
 
 ### librdkafka
 
-lib_LTLIBRARIES = libdwarf.la
+lib_LTLIBRARIES = librdkafka.la
 
-libdwarf_la_SOURCES = \
+librdkafka_la_SOURCES = \
 cJSON.c \
 cJSON.h \
 crc32c.c \
@@ -195,4 +195,4 @@ librdkafka_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @releas
 
 librdkafkapkgincludedir = $(pkgincludedir)-@VMAJ@
 
-EXTRA_DIST = libdwarf.pc.in
+EXTRA_DIST = librdkafka.pc.in

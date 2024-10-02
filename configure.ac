@@ -34,7 +34,7 @@ AC_PREREQ([2.69])
 AC_INIT([librdkafka], [version], [librdkafka on confluent])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([config.h])
-# AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_MACRO_DIRS([m4])
 ### The following for librdkafka.pc.in
 AC_SUBST([PROJECT_VERSION],[version])
 
@@ -92,7 +92,9 @@ AC_CANONICAL_HOST
 AM_PROG_AR
 
 AM_INIT_AUTOMAKE([1.6 dist-xz subdir-objects])
-#m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+LT_INIT([disable-shared static])
 
 AC_PROG_CC
 AC_PROG_CXX
