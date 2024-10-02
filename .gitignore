@@ -61,3 +61,5 @@ autom4te.cache/
 src/.deps/
 stamp-h1
 config.h.in
+
+.vscode

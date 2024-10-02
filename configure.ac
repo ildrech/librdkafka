@@ -10,20 +10,10 @@ m4_define([version_minor], [5])
 m4_define([version_micro], [3])
 m4_define([version], [version_major.version_minor.version_micro])
 
-m4_define([version_release], [])
+m4_define([version_release], [version])
 m4_define([version_info_current], [m4_eval(version_major + version_minor)])
 m4_define([version_info_revision], [version_micro])
 m4_define([version_info_age], [version_minor])
-
-version_info="version_info_current:version_info_revision:version_info_age"
-release_info="version_release"
-
-AC_SUBST([version_info])
-AC_SUBST([release_info])
-
-VMAJ=version_major
-AC_SUBST([VMAJ])
-
 
 ###
 ### Prereqs
@@ -96,6 +86,13 @@ AM_INIT_AUTOMAKE([1.6 dist-xz subdir-objects])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 LT_INIT([disable-shared static])
+
+version_info="version_info_current:version_info_revision:version_info_age"
+release_info="version_release"
+AC_SUBST([version_info])
+AC_SUBST([release_info])
+VMAJ=version_major
+AC_SUBST([VMAJ])
 
 AC_PROG_CC
 AC_PROG_CXX
@@ -242,6 +239,17 @@ AS_IF(
     ])
 AC_MSG_CHECKING([whether sanitize options are used])
 AC_MSG_RESULT([${enable_sanitize}])
+
+###
+### Project specific defines
+###
+
+AC_DEFINE([WITH_LIBDL], [1], [Dynamic Library linking])
+AC_DEFINE([SOLIB_EXT], [".so"], [Library extension])
+AC_DEFINE([BUILT_WITH], ["Automake"], [List of all features enabled])
+
+### TODO: make an outside config option
+AC_DEFINE([ENABLE_DEVEL], [1], [Enable development asserts, checks, etc])
 
 ###
 ### TODO: Let's check for library functions
