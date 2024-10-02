@@ -39,6 +39,5 @@ librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c
 librdkafka_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @release_info@
 
 librdkafkapkgincludedir = $(pkgincludedir)-@VMAJ@
-librdkafkapkginclude_DATA = $(top_srcdir)/rdkafka.h 
 
 EXTRA_DIST = librdkafka.pc.in
