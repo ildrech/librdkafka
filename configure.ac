@@ -247,6 +247,7 @@ AC_MSG_RESULT([${enable_sanitize}])
 AC_DEFINE([WITH_LIBDL], [1], [Dynamic Library linking])
 AC_DEFINE([SOLIB_EXT], [".so"], [Library extension])
 AC_DEFINE([BUILT_WITH], ["Automake"], [List of all features enabled])
+AC_DEFINE([WITH_PLUGINS], [0], [Enable or disable plugins])
 
 ### TODO: make an outside config option
 AC_DEFINE([ENABLE_DEVEL], [1], [Enable development asserts, checks, etc])
