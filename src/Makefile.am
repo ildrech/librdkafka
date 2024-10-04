@@ -34,6 +34,7 @@ librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c
 		nanopb/pb_encode.c nanopb/pb_decode.c nanopb/pb_common.c \
 		opentelemetry/metrics.pb.c opentelemetry/common.pb.c opentelemetry/resource.pb.c \
         regexp.c \
+		rdxxhash.c lz4.c lz4frame.c lz4hc.c rdkafka_lz4.c \
         rdkafka.h rdkafka_mock.h
 
 librdkafka_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @release_info@
