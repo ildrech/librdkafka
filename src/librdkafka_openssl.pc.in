@@ -1,0 +1,13 @@
+# librdkafka openssl pkg-config source file
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: librdkafka_openssl
+Description: librdkafka_openssl adds openssl support to librdkafka
+Version: 2.2.1-alpha-dev
+Requires.private: @requirements_librdkafka_pc@ libssl
+Libs: -L${libdir} -lrdkafka_openssl@CMAKE_DEBUG_POSTFIX@
+Cflags: -I${includedir} -I${pkgincludedir}
