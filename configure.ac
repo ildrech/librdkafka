@@ -84,6 +84,8 @@ AC_ARG_WITH(
     OPT_SSL=$withval
 )
 
+LIBEVENT_OPENSSL
+
 ###
 ### Let's configure the default options with respect to host
 ### (linux support only)
