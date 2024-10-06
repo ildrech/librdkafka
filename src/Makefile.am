@@ -6,6 +6,16 @@ MAINTAINERCLEANFILES = Makefile.in
 
 ### librdkafka
 
+pkgconfigdir = $(libdir)/pkgconfig
+
+LIBRDKAFKA_PKGCONFIG_DATA_FILES = src/librdkafka.pc
+
+if OPENSSL
+LIBRDKAFKA_PKGCONFIG_DATA_FILES += src/libevent_openssl.pc
+endif
+
+pkgconfig_DATA = $(LIBRDKAFKA_PKGCONFIG_DATA_FILES)
+
 LIBRDKAFKA_LIBS_LA = librdkafka.la
 
 if OPENSSL
@@ -43,13 +53,13 @@ librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c
 		rdxxhash.c lz4.c lz4frame.c lz4hc.c rdkafka_lz4.c \
         rdkafka.h rdkafka_mock.h
 
-librdkafka_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @release_info@
+librdkafka_la_LDFLAGS = -I$(OPENSSL_INCS) -fPIC -no-undefined -version-info @version_info@ @release_info@
 
 librdkafkapkgincludedir = $(pkgincludedir)-@VMAJ@
 
 if OPENSSL
 librdkafka_openssl_la_SOURCES = rdkafka_ssl.c
-librdkafka_openssl_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @release_info@
+librdkafka_openssl_la_LDFLAGS = -I$(OPENSSL_INCS) -fPIC -no-undefined -version-info @version_info@ @release_info@
 endif
 
 EXTRA_DIST = librdkafka.pc.in librdkafka_openssl.pc.in

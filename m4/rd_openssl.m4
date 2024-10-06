@@ -1,8 +1,6 @@
 dnl ######################################################################
 dnl OpenSSL support
 AC_DEFUN([RDKAFKA_OPENSSL], [
-AC_REQUIRE([NTP_PKG_CONFIG])dnl
-
 if test "x$OPT_SSL" != xno -a X"$OPT_SSL" != Xno; then
    dnl backup the pre-ssl variables
    LDFLAGS_SAVE="$LDFLAGS"
