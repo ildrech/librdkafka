@@ -52,6 +52,7 @@ config.status
 depcomp
 install-sh
 librdkafka.pc
+librdkafka_openssl.pc
 libtool
 ltmain.sh
 m4/libtool.m4
