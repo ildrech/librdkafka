@@ -11,13 +11,13 @@ README: README.md
 
 pkgconfigdir = $(libdir)/pkgconfig
 
-LIBRDKAFKA_PKGCONFIG_DATA = librdkafka.pc
+LIBRDKAFKA_PKGCONFIG_DATA_FILES = librdkafka.pc
 
 if OPENSSL
-LIBRDKAFKA_PKGCONFIG_DATA += libevent_openssl.pc
+LIBRDKAFKA_PKGCONFIG_DATA_FILES += libevent_openssl.pc
 endif
 
-pkgconfig_DATA = $(LIBRDKAFKA_PKGCONFIG_DATA)
+pkgconfig_DATA = $(LIBRDKAFKA_PKGCONFIG_DATA_FILES)
 
 DISTCLEANFILES =
 

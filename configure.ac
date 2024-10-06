@@ -73,11 +73,11 @@ AC_ARG_ENABLE(
 OPT_SSL=off
 AC_ARG_WITH(
     ssl,
-    AC_HELP_STRING(
+    AS_HELP_STRING(
         [--with-ssl=PATH],
         [Where to look for OpenSSL, PATH points to the SSL installation (default: /usr/local/ssl); when possible, set the PKG_CONFIG_PATH environment variable instead of using this option]
     )
-    AC_HELP_STRING(
+    AS_HELP_STRING(
         [--without-ssl],
         [disable OpenSSL]
     ),
