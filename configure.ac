@@ -26,6 +26,7 @@ AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])
 m4_include([m4/rd_compiler.m4])
+m4_include([m4/rd_openssl.m4])
 ### The following for librdkafka.pc.in
 AC_SUBST([PROJECT_VERSION],[version])
 
@@ -68,6 +69,20 @@ AC_ARG_ENABLE(
         )
    ],
    [enable_wall="no"])
+
+OPT_SSL=off
+AC_ARG_WITH(
+    ssl,
+    AC_HELP_STRING(
+        [--with-ssl=PATH],
+        [Where to look for OpenSSL, PATH points to the SSL installation (default: /usr/local/ssl); when possible, set the PKG_CONFIG_PATH environment variable instead of using this option]
+    )
+    AC_HELP_STRING(
+        [--without-ssl],
+        [disable OpenSSL]
+    ),
+    OPT_SSL=$withval
+)
 
 ###
 ### Let's configure the default options with respect to host
@@ -122,6 +137,8 @@ AC_ARG_VAR(
     [LIBRDKAFKA_BIGENDIAN],
     [big endian yes/no needed various places]
 )
+dnl check if we have and should use OpenSSL
+AM_CONDITIONAL(OPENSSL, [test "$enable_openssl" != "no" && test "$have_openssl" = "yes"])
 
 c_common_flags="-Wall -Wextra -Wpointer-arith -Wmissing-declarations -Wcomment -Wformat -Wpedantic -Wuninitialized -Wshadow -Werror -Wno-long-long"
 AS_IF(
@@ -268,6 +285,7 @@ AC_CONFIG_FILES(
         Makefile
         src/Makefile
         librdkafka.pc
+        librdkafka_openssl.pc
     ]
 )
 

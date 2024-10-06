@@ -6,7 +6,13 @@ MAINTAINERCLEANFILES = Makefile.in
 
 ### librdkafka
 
-lib_LTLIBRARIES = librdkafka.la
+LIBRDKAFKA_LIBS_LA = librdkafka.la
+
+if OPENSSL
+LIBRDKAFKA_LIBS_LA += librdkafka_openssl.la
+endif
+
+lib_LTLIBRARIES = $(LIBRDKAFKA_LIBS_LA)
 
 librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c \
 		rdkafka_conf.c rdkafka_timer.c rdkafka_offset.c \
@@ -41,4 +47,9 @@ librdkafka_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @releas
 
 librdkafkapkgincludedir = $(pkgincludedir)-@VMAJ@
 
-EXTRA_DIST = librdkafka.pc.in
+if OPENSSL
+librdkafka_openssl_la_SOURCES = rdkafka_ssl.c
+librdkafka_openssl_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @release_info@
+endif
+
+EXTRA_DIST = librdkafka.pc.in librdkafka_openssl.pc.in

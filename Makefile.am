@@ -10,7 +10,14 @@ SUBDIRS = src
 README: README.md
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = librdkafka.pc
+
+LIBRDKAFKA_PKGCONFIG_DATA = librdkafka.pc
+
+if OPENSSL
+LIBRDKAFKA_PKGCONFIG_DATA += libevent_openssl.pc
+endif
+
+pkgconfig_DATA = $(LIBRDKAFKA_PKGCONFIG_DATA)
 
 DISTCLEANFILES =
 
