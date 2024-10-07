@@ -287,7 +287,6 @@ AC_CONFIG_FILES(
         Makefile
         src/Makefile
         src/librdkafka.pc
-        src/librdkafka_openssl.pc
     ]
 )
 

@@ -52,18 +52,7 @@ if test "x$OPT_SSL" != xno -a X"$OPT_SSL" != Xno; then
       ;;
    esac
 
-   if test "$PKGTEST" = "yes"; then
-	OPENSSL_LIBS=`$PKG_CONFIG --libs openssl 2>/dev/null`
-	case "$OPENSSL_LIBS" in
-	 '') ;;
-	 *) OPENSSL_LIBS="$OPENSSL_LIBS $EV_LIB_GDI $EV_LIB_WS32 $OPENSSL_LIBADD"
-	    have_openssl=yes
-	    ;;
-	esac
-	OPENSSL_INCS=`$PKG_CONFIG --cflags openssl 2>/dev/null`
-   else
-      OPENSSL_INCS=$PREFIX_OPENSSL/include
-   fi
+   OPENSSL_INCS=$PREFIX_OPENSSL/include
 
    dnl finally, set flags to use SSL
    CPPFLAGS="$CPPFLAGS $SSL_CPPFLAGS"
@@ -74,6 +63,5 @@ if test "x$OPT_SSL" != xno -a X"$OPT_SSL" != Xno; then
    CPPFLAGS="$CPPFLAGS_SAVE"
    LIBS="$LIBS_SAVE"
    AC_SUBST(OPENSSL_INCS)
-   AC_SUBST(OPENSSL_LIBS)
 fi
 ])

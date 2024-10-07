@@ -7,22 +7,9 @@ MAINTAINERCLEANFILES = Makefile.in
 ### librdkafka
 
 pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = librdkafka.pc
 
-LIBRDKAFKA_PKGCONFIG_DATA_FILES = src/librdkafka.pc
-
-if OPENSSL
-LIBRDKAFKA_PKGCONFIG_DATA_FILES += src/libevent_openssl.pc
-endif
-
-pkgconfig_DATA = $(LIBRDKAFKA_PKGCONFIG_DATA_FILES)
-
-LIBRDKAFKA_LIBS_LA = librdkafka.la
-
-if OPENSSL
-LIBRDKAFKA_LIBS_LA += librdkafka_openssl.la
-endif
-
-lib_LTLIBRARIES = $(LIBRDKAFKA_LIBS_LA)
+lib_LTLIBRARIES = librdkafka.la
 
 librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c \
 		rdkafka_conf.c rdkafka_timer.c rdkafka_offset.c \
@@ -51,15 +38,11 @@ librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c
 		opentelemetry/metrics.pb.c opentelemetry/common.pb.c opentelemetry/resource.pb.c \
         regexp.c \
 		rdxxhash.c lz4.c lz4frame.c lz4hc.c rdkafka_lz4.c \
-        rdkafka.h rdkafka_mock.h
+        rdkafka.h rdkafka_mock.h \
+		rdkafka_ssl.c
 
 librdkafka_la_LDFLAGS = -I$(OPENSSL_INCS) -fPIC -no-undefined -version-info @version_info@ @release_info@
 
 librdkafkapkgincludedir = $(pkgincludedir)-@VMAJ@
 
-if OPENSSL
-librdkafka_openssl_la_SOURCES = rdkafka_ssl.c
-librdkafka_openssl_la_LDFLAGS = -I$(OPENSSL_INCS) -fPIC -no-undefined -version-info @version_info@ @release_info@
-endif
-
-EXTRA_DIST = librdkafka.pc.in librdkafka_openssl.pc.in
+EXTRA_DIST = librdkafka.pc.in
