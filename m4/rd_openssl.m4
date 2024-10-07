@@ -53,6 +53,7 @@ if test "x$OPT_SSL" != xno -a X"$OPT_SSL" != Xno; then
    esac
 
    OPENSSL_INCS=$PREFIX_OPENSSL/include
+   OPENSSL_LIBS=$PREFIX_OPENSSL/lib
 
    dnl finally, set flags to use SSL
    CPPFLAGS="$CPPFLAGS $SSL_CPPFLAGS"
@@ -63,5 +64,6 @@ if test "x$OPT_SSL" != xno -a X"$OPT_SSL" != Xno; then
    CPPFLAGS="$CPPFLAGS_SAVE"
    LIBS="$LIBS_SAVE"
    AC_SUBST(OPENSSL_INCS)
+   AC_SUBST(OPENSSL_LIBS)
 fi
 ])

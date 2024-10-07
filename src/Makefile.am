@@ -9,6 +9,8 @@ MAINTAINERCLEANFILES = Makefile.in
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = librdkafka.pc
 
+librdkafka_la_CPPFLAGS = -I$(OPENSSL_INCS)
+
 lib_LTLIBRARIES = librdkafka.la
 
 librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c \
@@ -41,7 +43,9 @@ librdkafka_la_SOURCES = rdkafka.c rdkafka_broker.c rdkafka_msg.c rdkafka_topic.c
         rdkafka.h rdkafka_mock.h \
 		rdkafka_ssl.c
 
-librdkafka_la_LDFLAGS = -I$(OPENSSL_INCS) -fPIC -no-undefined -version-info @version_info@ @release_info@
+librdkafka_la_LDFLAGS = -fPIC -no-undefined -version-info @version_info@ @release_info@
+
+librdkafka_la_LIBADD = $(OPENSSL_LIBS)/libssl.a $(OPENSSL_LIBS)/libcrypto.a
 
 librdkafkapkgincludedir = $(pkgincludedir)-@VMAJ@
 
